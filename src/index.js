@@ -65,13 +65,17 @@ function generateCard(id, fullName, jobTitle, bio, avatar) {
   let text = document.createElement("div");
 
   //4. Create an h2 for fullName
-
+  let name = document.createElement("h2");
+  name.textContent = fullName;
   //5. Create an h3 for jobTitle
-
+  let job = document.createElement("h3");
+  job.textContent = jobTitle;
   //6. Create a p for bio
-
+  let biography = document.createElement("p");
+  biography.textContent = bio;
   //7. Append the fullName, jobTitle, and bio element
   //   to the div created for text.
+  text.append(name, job, biography);
 
   //8. Append the Image and the Text div
   //   to the new section you created in step 1
