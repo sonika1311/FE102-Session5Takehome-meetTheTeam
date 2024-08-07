@@ -35,7 +35,12 @@ const content = document.getElementById("content");
  * @returns An Image HTML Element
  */
 const getImageElement = (src, alt) => {
-  return;
+  let image = document.createElement("img");
+  image.setAttribute("src", src);
+  image.setAttribute("alt", alt);
+  image.setAttribute("height", "100");
+  image.setAttribute("width", "100");
+  return image;
 };
 
 /**
@@ -49,11 +54,15 @@ const getImageElement = (src, alt) => {
  */
 function generateCard(id, fullName, jobTitle, bio, avatar) {
   //1. Create a new "section" element and set the className and id
-
+  let sectionEle = document.createElement("section");
+  sectionEle.setAttribute("class", "team-member");
+  sectionEle.setAttribute("id", id);
+  // console.log(sectionEle);
   //2. Generate the image using getImageElement() function
   //Hint - Use fullname as alt for the image.
-
+  let avtar = getImageElement(avatar, fullName);
   //3. Create a div for text content
+  let text = document.createElement("div");
 
   //4. Create an h2 for fullName
 
@@ -66,9 +75,9 @@ function generateCard(id, fullName, jobTitle, bio, avatar) {
 
   //8. Append the Image and the Text div
   //   to the new section you created in step 1
-
+  sectionEle.append(avtar, text);
   //Return the new section element created.
-  return;
+  return sectionEle;
 }
 
 /**
@@ -78,7 +87,16 @@ function generateCard(id, fullName, jobTitle, bio, avatar) {
 function generateCardArray(data) {
   const cards = [];
   //Add logic to populate `cards` array below
-
+  data.forEach((element) => {
+    let card = generateCard(
+      element.id,
+      element.fullName,
+      element.jobTitle,
+      element.bio,
+      element.avatar
+    );
+    cards.push(card);
+  });
   //Return cards array
   return cards;
 }
